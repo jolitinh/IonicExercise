@@ -1,0 +1,14 @@
+<ion-view view-title="Images">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-thumbnail-left" ng-repeat="image in imageCollection" type="item-text-wrap" >
+        <img ng-src="{{image.link}}">
+        <h2>{{image.title}}</h2>
+        <p>Image Type: {{image.type}}</p>
+        <p>Image URL: {{image.link}}</p>
+       
+      </ion-item>
+    </ion-list>
+    <ion-refresher on-refresh="getImages()"></ion-refresher>
+  </ion-content>
+</ion-view>

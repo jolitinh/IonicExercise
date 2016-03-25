@@ -20,20 +20,16 @@ angular.module('IonicExercise.services', [])
     }
   };
 })
-.factory('LocationService', function( $cordovaGeolocation, $ionicLoading, $q, $timeout) {
+.factory('LocationService', function( $cordovaGeolocation, $ionicLoading, $timeout) {
         var latestLocations= [];
         var posOptions = {
             timeout: 10000,
             enableHighAccuracy: false
         };
 
-        //$cordovaGeolocation.getCurrentPosition(posOptions);
-
         return {
           refreshLocation: function(){
-            var deferred = $q.defer();
-
-            $cordovaGeolocation
+            return $cordovaGeolocation
             .getCurrentPosition(posOptions)
             .then(function(position) {
 
@@ -46,10 +42,8 @@ angular.module('IonicExercise.services', [])
                   timeRecorded: currentTimeStamp.getHours() + ':' + currentTimeStamp.getMinutes() + ':' + currentTimeStamp.getSeconds() 
                 });
 
-                deferred.resolve();
+                return latestLocations;
             });
-
-            return deferred.promise;
           },
           getLatestLocations: function(){
             return latestLocations;

@@ -34,8 +34,8 @@ angular.module('IonicExercise.controllers', [])
     });
 
     LocationService.refreshLocation()
-    .then(function(){
-      $scope.myLocations = LocationService.getLatestLocations();
+    .then(function(locationsList){
+      $scope.myLocations = locationsList;
       $ionicLoading.hide();
     })
   }
